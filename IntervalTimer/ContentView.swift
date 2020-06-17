@@ -9,18 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var timeRemaining = 20
-    
+    @State var secondsRemaining = 62
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        Text("\(timeRemaining)")
+        Text(secondsToHoursMinutesSeconds(seconds: secondsRemaining))
+            .font(.system(size: 80))
             .onReceive(timer) { _ in
-                if self.timeRemaining > 0 {
-                    self.timeRemaining -= 1
+                if self.secondsRemaining > 0 {
+                    self.secondsRemaining -= 1
                 }
         }
-        .font(.system(size: 64))
     }
 }
 
